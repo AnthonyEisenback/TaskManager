@@ -36,7 +36,7 @@ public class Library {
     protected void addTask() {
 
             try {
-                System.out.println("Please enter the name of the game you are adding!");
+                System.out.println("Please enter the name of the game you are adding.");
                 name = scanner.nextLine();
                 Tasks tasks = new Tasks(name);
                 tasks1.add(tasks);
@@ -54,7 +54,18 @@ public class Library {
 
     }
 
-    protected void removeTask() {
+    protected void removeTask(int gameIndex) {
+        int index = 1;
+        System.out.println("Input the number of the task to be removed!");
+
+        for (Tasks tasks : tasks1) {
+            System.out.println(index++ + ". " + tasks.getTaskName());
+        }
+        gameIndex--;
+        int qwerty = scanner.nextInt();
+        tasks1.remove(qwerty - 1);
+        System.out.println("Your task has been deleted !");
+        menu.Options();
 
     }
 

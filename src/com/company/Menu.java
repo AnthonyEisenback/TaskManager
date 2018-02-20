@@ -29,7 +29,7 @@ public class Menu {
                     break;
 
                 case 2:
-                    library.removeTask();
+                    library.removeTask(0);
 
                     break;
 
