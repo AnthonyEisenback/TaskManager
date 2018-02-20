@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
@@ -17,47 +18,55 @@ public class Menu {
                 "6.) View details of a task\n" +
                 "7.) Exit Program");
 
-        switch (scanner.nextInt()) {
-
-            case 1:
-                library.addTask();
-
-                break;
-
-            case 2:
-                library.removeTask();
-
-                break;
-
-            case 3:
-                library.viewTasks(0);
-
-                break;
-
-            case 4:
-                library.completedTasks();
-
-                break;
-
-            case 5:
-                library.editTask();
-
-                break;
-
-            case 6:
-                library.selectAndViewDetail();
-
-                break;
-
-            case 7:
-                library.exit();
-                break;
-
-            default:
-                System.out.println("Please enter a number");
-                break;
+        try {
 
 
+            switch (scanner.nextInt()) {
+
+                case 1:
+                    library.addTask();
+
+                    break;
+
+                case 2:
+                    library.removeTask();
+
+                    break;
+
+                case 3:
+                    library.viewTasks(0);
+
+                    break;
+
+                case 4:
+                    library.completedTasks();
+
+                    break;
+
+                case 5:
+                    library.editTask();
+
+                    break;
+
+                case 6:
+                    library.selectAndViewDetail();
+
+                    break;
+
+                case 7:
+                    library.exit();
+                    break;
+
+                default:
+                    System.out.println("Please enter a number");
+                    break;
+
+            }
+
+        }catch (InputMismatchException ime ) {
+            scanner.nextLine();
+            Options();
+            System.out.println("Please input a number");
         }
 
 
