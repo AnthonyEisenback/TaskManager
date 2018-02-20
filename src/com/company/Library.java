@@ -1,13 +1,30 @@
 package com.company;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Library {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd//yyyy");
     private Tasks tasks = new Tasks();
+    private ArrayList<Tasks> tasks1 = new ArrayList<>();
+    public final Menu menu;
 
-    protected void viewTasks() {
+
+    public Library(Menu menu) {
+        this.menu = menu;
+    }
+
+    protected void viewTasks(int index) {
+
+        System.out.println("Here is all your tasks that have not been completed.\n");
+
+        for (Tasks tasks : tasks1) {
+            System.out.println(index++ + ". " + tasks);
+        }
+
+        System.out.println("\n");
+        menu.Options();
 
     }
 
@@ -42,7 +59,6 @@ public class Library {
         Calendar calendar = Calendar.getInstance();
         System.out.println("You created your Task on " +
                 dateFormat.format(calendar.getTime()));
-
 
 
     }

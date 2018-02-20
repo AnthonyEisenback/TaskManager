@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Menu {
     private Scanner scanner = new Scanner(System.in);
-    public Library library = new Library();
+    public Library library = new Library(this);
 
 
     protected void Options() {
@@ -30,7 +30,7 @@ public class Menu {
                 break;
 
             case 3:
-                library.viewTasks();
+                library.viewTasks(0);
 
                 break;
 
