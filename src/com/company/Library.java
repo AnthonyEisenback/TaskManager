@@ -2,19 +2,19 @@ package com.company;
 
 public class Library {
 
-    private void viewTasks ()  {
+    protected void viewTasks() {
 
     }
 
-    private void addTask () {
+    protected void addTask () {
 
     }
 
-    private void removeTask () {
+    protected void removeTask () {
 
     }
 
-    private void exit (){
+    protected void exit (){
         System.out.println("Goodbye");
         System.exit(0);
     }
@@ -32,6 +32,6 @@ public class Library {
     }
 
     private void time () {
-        
+
     }
 }
