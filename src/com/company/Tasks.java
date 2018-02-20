@@ -1,24 +1,27 @@
 package com.company;
 
-public class Tasks {
+import java.util.Scanner;
 
-  int duedate;
+public class Tasks {
+    Scanner scanner = new Scanner(System.in);
+
+  String duedate;
   String taskName;
   String tastDetails;
-  int dateStarted;
+  String dateStarted;
 
-    public Tasks() {
-        this.duedate = duedate;
+    public Tasks(String taskName) {
+        this.duedate = "";
         this.taskName = taskName;
         this.tastDetails = tastDetails;
         this.dateStarted = dateStarted;
     }
 
-    public int getDuedate() {
+    public String getDuedate() {
         return duedate;
     }
 
-    public void setDuedate(int duedate) {
+    public void setDuedate(String duedate) {
         this.duedate = duedate;
     }
 
@@ -38,11 +41,11 @@ public class Tasks {
         this.tastDetails = tastDetails;
     }
 
-    public int getDateStarted() {
+    public String getDateStarted() {
         return dateStarted;
     }
 
-    public void setDateStarted(int dateStarted) {
+    public void setDateStarted(String dateStarted) {
         this.dateStarted = dateStarted;
     }
 }

@@ -12,7 +12,7 @@ public class Menu {
 
         System.out.println("What would you like to do today?\n1.) Add a task \n" +
                 "2.) Remove a task\n" +
-                "3.) Uncompleted tasks\n" +
+                "3.) view your tasks\n" +
                 "4.) Completed Tasks\n" +
                 "5.) Edit a task \n" +
                 "6.) View details of a task\n" +
@@ -34,7 +34,7 @@ public class Menu {
                     break;
 
                 case 3:
-                    library.viewTasks(0);
+                    library.viewTasks();
 
                     break;
 
