@@ -20,21 +20,33 @@ public class Menu {
         switch (scanner.nextInt()) {
 
             case 1:
+                library.addTask();
+
                 break;
 
             case 2:
+                library.removeTask();
+
                 break;
 
             case 3:
+                library.viewTasks();
+
                 break;
 
             case 4:
+                library.completedTasks();
+
                 break;
 
             case 5:
+                library.editTask();
+
                 break;
 
             case 6:
+                library.selectAndViewDetail();
+
                 break;
 
             case 7:

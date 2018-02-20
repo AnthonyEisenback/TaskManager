@@ -26,15 +26,15 @@ public class Library {
         System.exit(0);
     }
 
-    private void editTask() {
+    protected void editTask() {
 
     }
 
-    private void selectAndViewDetail() {
+    protected void selectAndViewDetail() {
 
     }
 
-    private void removeUncompletedTask() {
+    protected void completedTasks() {
 
     }
 
