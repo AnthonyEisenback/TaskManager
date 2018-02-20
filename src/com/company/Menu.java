@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Menu {
     private Scanner scanner = new Scanner(System.in);
-    private Library library = new Library();
+    public Library library = new Library();
 
 
     protected void Options() {
