@@ -10,12 +10,12 @@ import java.util.Scanner;
 
 public class Library {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd//yyyy");
-    private Tasks tasks = new Tasks("","", "");
+    private Tasks tasks = new Tasks("", "", 0);
     private ArrayList<Tasks> tasks1 = new ArrayList<>();
     public final Menu menu;
     private Scanner scanner = new Scanner(System.in);
     private String name;
-    private String completedBy;
+    private int completedBy;
     private String purpose;
     private ArrayList<Tasks> completed = new ArrayList<>();
     private ArrayList<Tasks> incomplete = new ArrayList<>();
@@ -31,8 +31,10 @@ public class Library {
 
 
         for (Tasks tasks : tasks1) {
-            System.out.println(index++ + ". " + tasks.getTaskName() + " " + tasks.getTastDetails() + " " + tasks.getDuedate());
+            System.out.println(index++ + ". Task Name, " + tasks.getTaskName() + ". Task's Details, " + tasks.getTastDetails() + ". Date To complete by, " + tasks.getDuedate() + ". ");
         }
+
+        menu.Options();
 
     }
 
@@ -44,11 +46,11 @@ public class Library {
             System.out.println("Please enter the details of this task, ");
             purpose = scanner.nextLine();
             System.out.println("Please enter the goal of completion of this task, ");
-            completedBy = scanner.nextLine();
+            completedBy = scanner.nextInt();
             Tasks tasks = new Tasks(name, purpose, completedBy);
+            incomplete.add(tasks);
             tasks1.add(tasks);
 
-            menu.Options();
 
         } catch (InputMismatchException ime) {
             System.out.println("Please enter the Tasks Title");
@@ -124,6 +126,7 @@ public class Library {
             editTask(0);
             System.out.println("Please input a number");
         }
+        menu.Options();
     }
 
     protected void selectAndViewDetail() {
@@ -137,7 +140,7 @@ public class Library {
         for (Tasks tasks : completed) {
             System.out.println(index++ + ". " + tasks.getTaskName());
         }
-
+        menu.Options();
     }
 
     private void time() {
@@ -150,10 +153,26 @@ public class Library {
 
     protected void incomplete() {
 
-        System.out.println("Here is your completed tasks");
+        System.out.println("Here is your uncompleted tasks!");
         int index = 1;
-        for (Tasks tasks : completed) {
+        for (Tasks tasks : incomplete) {
             System.out.println(index++ + ". " + tasks.getTaskName());
         }
+        menu.Options();
+    }
+
+    protected void markcomplete(int gameIndex) {
+        System.out.println("From here you can mark a task complete.\nPlease enter the number of the task you would like to mark complete.");
+        int index = 1;
+        for (Tasks tasks : tasks1) {
+            System.out.println(index++ + ". " + tasks.getTaskName());
+            System.out.println("Please enter the tasks number to complete");
+        }
+
+        gameIndex--;
+        int qwerty = scanner.nextInt();
+//        completed.add();
+
+        menu.Options();
     }
 }

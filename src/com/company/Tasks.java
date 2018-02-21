@@ -4,23 +4,23 @@ import java.util.Scanner;
 
 public class Tasks {
 
-  String duedate;
+  int duedate;
   String taskName;
   String tastDetails;
   String dateStarted;
 
-    public Tasks(String taskName, String tastDetails, String duedate) {
+    public Tasks(String taskName, String tastDetails, int duedate) {
         this.duedate = duedate;
         this.taskName = taskName;
         this.tastDetails = tastDetails;
         this.dateStarted = dateStarted;
     }
 
-    public String getDuedate() {
+    public int getDuedate() {
         return duedate;
     }
 
-    public void setDuedate(String duedate) {
+    public void setDuedate(int duedate) {
         this.duedate = duedate;
     }
 
