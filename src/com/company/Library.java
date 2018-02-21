@@ -28,7 +28,7 @@ public class Library {
         System.out.println("Here is all your tasks that have not been completed.");
 
         for (Tasks tasks : tasks1) {
-            System.out.println(index++ + ".  " + tasks.getTaskName() + ". \n");
+            System.out.println(index++ + ".  " + tasks.getTaskName() + " \n");
         }
 
         menu.Options();
@@ -51,6 +51,7 @@ public class Library {
 
         } catch (InputMismatchException ime) {
             System.out.println("Please enter the Tasks Title");
+            menu.Options();
         }
 
         menu.Options();
@@ -90,10 +91,7 @@ public class Library {
             }
             gameIndex--;
             int qwerty = scanner.nextInt();
-            tasks1.remove(qwerty - 1);
-            System.out.println("Your task has been deleted !");
-            menu.Options();
-
+            tasks1.get(qwerty - 1);
 
             System.out.println("please choose a part of the tasks to manage, \n1.) Change task name\n" +
                     "2.) Change a tasks detail\n" +
@@ -104,12 +102,45 @@ public class Library {
             switch (scanner.nextInt()) {
 
                 case 1:
+                    try {
+                        System.out.println("please enter the new name...");
+                        String names = scanner.nextLine();
+                        incomplete.get(qwerty - 1).setTaskName(scanner.nextLine());
+                        System.out.println("Please enter the name again");
+                        tasks1.get(qwerty - 1).setTaskName(scanner.nextLine());
+                        System.out.println("Your tasks name have been changed");
+                    } catch (InputMismatchException ime) {
+                        System.out.println("Please enter the name correctly");
+                        editTask(0);
+                    }
 
                     break;
                 case 2:
+                    try {
+                        System.out.println("please enter the new details...");
+                        String names = scanner.nextLine();
+                        incomplete.get(qwerty - 1).setTastDetails(scanner.nextLine());
+                        System.out.println("Please enter the details again...");
+                        tasks1.get(qwerty - 1).setTastDetails(scanner.nextLine());
+                        System.out.println("Your task's details have been changed");
+                    } catch (InputMismatchException ime) {
+                        System.out.println("Please enter the details correctly");
+                        editTask(0);
+                    }
 
                     break;
                 case 3:
+                    try {
+                        System.out.println("please enter the new date of completion...");
+                        String names = scanner.nextLine();
+                        incomplete.get(qwerty - 1).setDuedate(scanner.nextInt());
+                        System.out.println("Please enter the name again");
+                        tasks1.get(qwerty - 1).setDuedate(scanner.nextInt());
+                        System.out.println("Your tasks due date has been changed");
+                    } catch (InputMismatchException ime) {
+                        System.out.println("Please enter the date correctly");
+                        editTask(0);
+                    }
 
                     break;
                 case 4://recalls the options method to go back to the main menu.
@@ -169,14 +200,15 @@ public class Library {
     protected void markcomplete(int gameIndex) {
         System.out.println("From here you can mark a task complete.\nPlease enter the number of the task you would like to mark complete.");
         int index = 1;
-        for (Tasks tasks : tasks1) {
+        for (Tasks tasks : incomplete) {
             System.out.println(index++ + ". " + tasks.getTaskName());
             System.out.println("Please enter the tasks number to complete");
         }
 
         gameIndex--;
         int qwerty = scanner.nextInt();
-//        completed.add();
+        completed.add(tasks);
+        incomplete.remove(qwerty - 1);
 
         menu.Options();
     }
