@@ -3,7 +3,6 @@ package com.company;
 import java.util.Scanner;
 
 public class Tasks {
-    Scanner scanner = new Scanner(System.in);
 
   String duedate;
   String taskName;
@@ -11,7 +10,7 @@ public class Tasks {
   String dateStarted;
 
     public Tasks(String taskName) {
-        this.duedate = "";
+        this.duedate = duedate;
         this.taskName = taskName;
         this.tastDetails = tastDetails;
         this.dateStarted = dateStarted;
