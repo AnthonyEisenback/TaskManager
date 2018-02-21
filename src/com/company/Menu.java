@@ -14,9 +14,10 @@ public class Menu {
                 "2.) Remove a task\n" +
                 "3.) View Your tasks\n" +
                 "4.) Completed Tasks\n" +
-                "5.) Edit a task \n" +
-                "6.) View details of a task\n" +
-                "7.) Exit Program");
+                "5.) View Uncompleted tasks\n" +
+                "6.) Edit a task \n" +
+                "7.) View details of a task\n" +
+                "8.) Exit Program");
 
         try {
 
@@ -44,17 +45,21 @@ public class Menu {
                     break;
 
                 case 5:
-                    library.editTask(0);
-
+                    library.incomplete();
                     break;
 
                 case 6:
+                    library.editTask(0);
+                    break;
+
+                case 7:
                     library.selectAndViewDetail();
 
                     break;
 
-                case 7:
+                case 8:
                     library.exit();
+
                     break;
 
                 default:
@@ -63,7 +68,7 @@ public class Menu {
 
             }
 
-        }catch (InputMismatchException ime ) {
+        } catch (InputMismatchException ime) {
             scanner.nextLine();
             Options();
             System.out.println("Please input a number");

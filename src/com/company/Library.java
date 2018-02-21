@@ -19,6 +19,8 @@ public class Library {
     private String name;
     private String completedBy;
     private String purpose;
+    private ArrayList<Tasks> completed = new ArrayList<>();
+    private ArrayList<Tasks> incomplete = new ArrayList<>();
 
 
     public Library(Menu menu) {
@@ -107,14 +109,6 @@ public class Library {
             menu.Options();
 
 
-
-
-
-
-
-
-
-
             System.out.println("please choose a part of the tasks to manage, \n1.) Change task name\n" +
                     "2.) Change a tasks detail\n" +
                     "3.) Change a tasks due date\n" +
@@ -152,6 +146,11 @@ public class Library {
     }
 
     protected void completedTasks() {
+        System.out.println("Here is your completed tasks");
+        int index = 1;
+        for (Tasks tasks : completed) {
+            System.out.println(index++ + ". " + tasks.getTaskName());
+        }
 
     }
 
@@ -161,5 +160,14 @@ public class Library {
                 dateFormat.format(calendar.getTime()));
 
 
+    }
+
+    protected void incomplete() {
+
+        System.out.println("Here is your completed tasks");
+        int index = 1;
+        for (Tasks tasks : completed) {
+            System.out.println(index++ + ". " + tasks.getTaskName());
+        }
     }
 }
