@@ -10,10 +10,8 @@ import java.util.Scanner;
 
 public class Library {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd//yyyy");
-    private Tasks tasks = new Tasks("");
+    private Tasks tasks = new Tasks("","", "");
     private ArrayList<Tasks> tasks1 = new ArrayList<>();
-    private ArrayList<Tasks> dates = new ArrayList<>();
-    private ArrayList<Tasks> detail = new ArrayList<>();
     public final Menu menu;
     private Scanner scanner = new Scanner(System.in);
     private String name;
@@ -33,13 +31,8 @@ public class Library {
 
 
         for (Tasks tasks : tasks1) {
-            System.out.println(index++ + ". " + tasks.getTaskName());
+            System.out.println(index++ + ". " + tasks.getTaskName() + " " + tasks.getTastDetails() + " " + tasks.getDuedate());
         }
-
-        for (Tasks taskDate : dates) {
-            System.out.println("|| " + taskDate.getDuedate());
-        }
-
 
     }
 
@@ -48,19 +41,12 @@ public class Library {
         try {
             System.out.println("Please enter the name of the task to be completed.");
             name = scanner.nextLine();
-            Tasks tasks = new Tasks(name);
-            tasks1.add(tasks);
-
-            System.out.println("Please enter the name details task to be completed.");
-            name = scanner.nextLine();
-            Tasks details = new Tasks(name);
-            detail.add(details);
-
-            System.out.println("Please enter the date of the task to be completed by.");
+            System.out.println("Please enter the details of this task, ");
+            purpose = scanner.nextLine();
+            System.out.println("Please enter the goal of completion of this task, ");
             completedBy = scanner.nextLine();
-            Tasks date = new Tasks(completedBy);
-            dates.add(date);
-
+            Tasks tasks = new Tasks(name, purpose, completedBy);
+            tasks1.add(tasks);
 
             menu.Options();
 

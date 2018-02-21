@@ -9,7 +9,7 @@ public class Tasks {
   String tastDetails;
   String dateStarted;
 
-    public Tasks(String taskName) {
+    public Tasks(String taskName, String tastDetails, String duedate) {
         this.duedate = duedate;
         this.taskName = taskName;
         this.tastDetails = tastDetails;
