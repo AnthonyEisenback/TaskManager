@@ -1,7 +1,5 @@
 package com.company;
 
-import javafx.concurrent.Task;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,11 +25,10 @@ public class Library {
 
     protected void viewTasks() {
         int index = 1;
-        System.out.println("Here is all your tasks that have not been completed.\n");
-
+        System.out.println("Here is all your tasks that have not been completed.");
 
         for (Tasks tasks : tasks1) {
-            System.out.println(index++ + ". Task Name, " + tasks.getTaskName() + ". Task's Details, " + tasks.getTastDetails() + ". Date To complete by, " + tasks.getDuedate() + ". ");
+            System.out.println(index++ + ".  " + tasks.getTaskName() + ". \n");
         }
 
         menu.Options();
@@ -71,6 +68,7 @@ public class Library {
         gameIndex--;
         int qwerty = scanner.nextInt();
         tasks1.remove(qwerty - 1);
+        incomplete.remove(qwerty - 1);
         System.out.println("Your task has been deleted !");
         menu.Options();
 
@@ -129,8 +127,15 @@ public class Library {
         menu.Options();
     }
 
-    protected void selectAndViewDetail() {
+    protected void selectAndViewDetail(int gameIndex) {
+        int index = 1;
+        System.out.println("Here is all the details on your tasks.");
 
+        for (Tasks tasks : tasks1) {
+            System.out.println(index++ + ". Task's Name, " + tasks.getTaskName() + ". Task's Details, " + tasks.getTastDetails() + ". Date To complete by, " + tasks.getDuedate() + ". \n");
+        }
+
+        menu.Options();
 
     }
 

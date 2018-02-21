@@ -53,7 +53,7 @@ public class Menu {
                     break;
 
                 case 7:
-                    library.selectAndViewDetail();
+                    library.selectAndViewDetail(0);
 
                     break;
 
