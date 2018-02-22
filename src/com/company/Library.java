@@ -1,10 +1,7 @@
 package com.company;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Library {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd//yyyy");
@@ -23,7 +20,7 @@ public class Library {
         this.menu = menu;
     }
 
-    protected void viewTasks() {
+    protected void viewTasks() {//the method to display the tasks all together.
         int index = 1;
         System.out.println("Here is all your tasks that have not been completed.");
 
@@ -35,7 +32,7 @@ public class Library {
 
     }
 
-    protected void addTask() {
+    protected void addTask() {//method that adds a task to the incomplete and tasks arrays
 
         try {
             System.out.println("Please enter the name of the task to be completed.");
@@ -59,7 +56,7 @@ public class Library {
 
     }
 
-    protected void removeTask(int gameIndex) {
+    protected void removeTask(int gameIndex) {//the method used to remove your tasks you choose
         int index = 1;
         System.out.println("Input the number of the task to be removed!");
 
@@ -75,12 +72,12 @@ public class Library {
 
     }
 
-    protected void exit() {
+    protected void exit() {//method to terminate the program
         System.out.println("Goodbye");
         System.exit(0);
     }
 
-    protected void editTask(int gameIndex) {
+    protected void editTask(int gameIndex) {//method to edit a task you have created.
         int index = 1;
 
         try {
@@ -158,7 +155,7 @@ public class Library {
         menu.Options();
     }
 
-    protected void selectAndViewDetail(int gameIndex) {
+    protected void selectAndViewDetail(int gameIndex) {//shows you the tasks you have made and allows you to see the full detail on the tasks
         int index = 1;
         System.out.println("Here is all the details on your tasks.");
 
@@ -170,12 +167,13 @@ public class Library {
 
     }
 
-    protected void completedTasks() {
+    protected void completedTasks() {//shows just your completed tasks.
         System.out.println("Here is your completed tasks");
         int index = 1;
         for (Tasks tasks : completed) {
             System.out.println(index++ + ". " + tasks.getTaskName());
         }
+
         menu.Options();
     }
 
@@ -187,7 +185,7 @@ public class Library {
 
     }
 
-    protected void incomplete() {
+    protected void incomplete() {//shows just your uncompleted tasks
 
         System.out.println("Here is your uncompleted tasks!");
         int index = 1;
@@ -197,7 +195,7 @@ public class Library {
         menu.Options();
     }
 
-    protected void markcomplete(int gameIndex) {
+    protected void markcomplete(int gameIndex) {//last section to complete than debug and add more features
         System.out.println("From here you can mark a task complete.\nPlease enter the number of the task you would like to mark complete.");
         int index = 1;
         for (Tasks tasks : incomplete) {
@@ -207,8 +205,8 @@ public class Library {
 
         gameIndex--;
         int qwerty = scanner.nextInt();
-        completed.add(tasks);
-        incomplete.remove(qwerty - 1);
+        incomplete.remove(qwerty);
+        completed.add(incomplete.get(qwerty));
 
         menu.Options();
     }

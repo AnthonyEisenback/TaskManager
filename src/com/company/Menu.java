@@ -8,16 +8,17 @@ public class Menu {
     public Library library = new Library(this);
 
 
-    protected void Options() {
+    protected void Options() {//this is the main menu that shows you all the first choices you have when the program is launched
 
         System.out.println("What would you like to do today?\n1.) Add a task \n" +
                 "2.) Remove a task\n" +
                 "3.) View Your tasks\n" +
-                "4.) Completed Tasks\n" +
-                "5.) View Uncompleted tasks\n" +
-                "6.) Edit a task \n" +
-                "7.) View details of a task\n" +
-                "8.) Exit Program");
+                "4.) Mark a task as Complete\n" +
+                "5.) Completed Tasks\n" +
+                "6.) View Uncompleted tasks\n" +
+                "7.) Edit a task \n" +
+                "8.) View details of a task\n" +
+                "9.) Exit Program");
 
         try {
 
@@ -40,27 +41,33 @@ public class Menu {
                     break;
 
                 case 4:
+                    library.markcomplete(0);
+                    break;
+
+                case 5:
                     library.completedTasks();
 
                     break;
 
-                case 5:
-                    library.incomplete();
-                    break;
-
                 case 6:
-                    library.editTask(0);
+                    library.incomplete();
+
                     break;
 
                 case 7:
-                    library.selectAndViewDetail(0);
+                    library.editTask(0);
+
 
                     break;
 
                 case 8:
-                    library.exit();
+                    library.selectAndViewDetail(0);
+
 
                     break;
+
+                case 9:
+                    library.exit();
 
                 default:
                     System.out.println("Please enter a number");
