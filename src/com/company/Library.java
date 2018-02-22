@@ -191,6 +191,20 @@ public class Library {
         int index = 1;
         for (Tasks tasks : incomplete) {
             System.out.println(index++ + ". " + tasks.getTaskName());
+            System.out.println("These are your uncompleted tasks \nWhat would you like to do now?\n1.) Go back to menu\n2.) Mark a task as complete");
+        }
+
+        switch (scanner.nextInt()){
+            case 1:
+                menu.Options();
+                break;
+            case 2:
+                markcomplete(0);
+                break;
+                default:
+                    System.out.println("Please enter a number");
+                    break;
+
         }
         menu.Options();
     }
