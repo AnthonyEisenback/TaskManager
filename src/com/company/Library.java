@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Library {
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd//yyyy");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss : MM/dd/yyyy");
     //    private Tasks tasks = new Tasks("", "", 0);
     private ArrayList<Tasks> tasks1 = new ArrayList<>();
     public final Menu menu;
@@ -12,7 +12,7 @@ public class Library {
     private String name;
     private int completedBy;
     private String purpose;
-    private ArrayList<String> completed = new ArrayList<>();
+    private List<String> completed = new ArrayList<>();
     private ArrayList<Tasks> incomplete = new ArrayList<>();
 
 
@@ -37,7 +37,6 @@ public class Library {
         try {
             System.out.println("Please enter the name of the task to be completed.");
             name = scanner.nextLine();
-            scanner.nextLine();
 
             System.out.println("Please enter the details of this task, ");
             purpose = scanner.nextLine();
@@ -49,6 +48,9 @@ public class Library {
             incomplete.add(tasks);
             tasks1.add(tasks);
 
+            Calendar calendar = Calendar.getInstance();
+
+            System.out.println("You added your task on, " + dateFormat.format(calendar.getTime()));
 
         } catch (InputMismatchException ime) {
             System.out.println("Please enter the Tasks Title");
@@ -57,20 +59,26 @@ public class Library {
 
         System.out.println("Would you like to add another task?\n1.) Yes\n2.) No");
 
-        switch (scanner.nextInt()) {
-            case 1:
+        try {
 
-                addTask();
-                break;
-            case 2:
+            switch (scanner.nextInt()) {
+                case 1:
 
-                menu.Options();
-                break;
-            default:
+                    addTask();
+                    break;
+                case 2:
 
-                menu.Options();
-                break;
+                    menu.Options();
+                    break;
+                default:
 
+                    menu.Options();
+                    break;
+
+            }
+
+        }catch (InputMismatchException ime ) {
+            System.out.println("Please choose a number!");
         }
 
         menu.Options();
@@ -209,12 +217,19 @@ public class Library {
 
     protected void incomplete() {//shows just your uncompleted tasks
 
+        Calendar calendar = Calendar.getInstance();
+
+        System.out.println("This is your time right now. " + dateFormat.format(calendar.getTime()));
+
+
         System.out.println("Here is your uncompleted tasks!");
+
         int index = 1;
         for (Tasks tasks : incomplete) {
             System.out.println(index++ + ". " + tasks.getTaskName());
             System.out.println("These are your uncompleted tasks \nWhat would you like to do now?\n1.) Go back to menu\n2.) Mark a task as complete");
         }
+
 
         try {
 
@@ -236,23 +251,14 @@ public class Library {
     }
 
 
-    protected void markComplete(int gameIndex) {//last section to complete than debug and add more features
+    protected void markComplete(int input) {//last section to complete than debug and add more features
         System.out.println("From here you can mark a task complete.\nPlease enter the name of the task you would like to mark complete.");
         int index = 1;
         for (Tasks tasks : incomplete) {
             System.out.println(index++ + ". " + tasks.getTaskName());
-            System.out.println("Please enter the tasks name to be completed");
-        }
-        String next = scanner.nextLine();
-
-        for (int i = 0; i < incomplete.size(); i++) {
-            completed.add(next);
-
-
         }
 
 
-        menu.Options();
     }
 }
 
