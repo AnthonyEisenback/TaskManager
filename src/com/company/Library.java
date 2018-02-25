@@ -5,14 +5,14 @@ import java.util.*;
 
 public class Library {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd//yyyy");
-    private Tasks tasks = new Tasks("", "", 0);
+    //    private Tasks tasks = new Tasks("", "", 0);
     private ArrayList<Tasks> tasks1 = new ArrayList<>();
     public final Menu menu;
     private Scanner scanner = new Scanner(System.in);
     private String name;
     private int completedBy;
     private String purpose;
-    private ArrayList<Tasks> completed = new ArrayList<>();
+    private ArrayList<String> completed = new ArrayList<>();
     private ArrayList<Tasks> incomplete = new ArrayList<>();
 
 
@@ -37,10 +37,14 @@ public class Library {
         try {
             System.out.println("Please enter the name of the task to be completed.");
             name = scanner.nextLine();
+            scanner.nextLine();
+
             System.out.println("Please enter the details of this task, ");
             purpose = scanner.nextLine();
+
             System.out.println("Please enter the goal of completion of this task, ");
             completedBy = scanner.nextInt();
+
             Tasks tasks = new Tasks(name, purpose, completedBy);
             incomplete.add(tasks);
             tasks1.add(tasks);
@@ -49,6 +53,24 @@ public class Library {
         } catch (InputMismatchException ime) {
             System.out.println("Please enter the Tasks Title");
             menu.Options();
+        }
+
+        System.out.println("Would you like to add another task?\n1.) Yes\n2.) No");
+
+        switch (scanner.nextInt()) {
+            case 1:
+
+                addTask();
+                break;
+            case 2:
+
+                menu.Options();
+                break;
+            default:
+
+                menu.Options();
+                break;
+
         }
 
         menu.Options();
@@ -170,8 +192,8 @@ public class Library {
     protected void completedTasks() {//shows just your completed tasks.
         System.out.println("Here is your completed tasks");
         int index = 1;
-        for (Tasks tasks : completed) {
-            System.out.println(index++ + ". " + tasks.getTaskName());
+        for (String tasks : completed) {
+            System.out.println(index++ + ". " + completed.get(0));
         }
 
         menu.Options();
@@ -194,34 +216,44 @@ public class Library {
             System.out.println("These are your uncompleted tasks \nWhat would you like to do now?\n1.) Go back to menu\n2.) Mark a task as complete");
         }
 
-        switch (scanner.nextInt()){
-            case 1:
-                menu.Options();
-                break;
-            case 2:
-                markcomplete(0);
-                break;
+        try {
+
+            switch (scanner.nextInt()) {
+                case 1:
+                    menu.Options();
+                    break;
+                case 2:
+                    markComplete(0);
+                    break;
                 default:
                     System.out.println("Please enter a number");
                     break;
 
+            }
+        } catch (InputMismatchException ime) {
+            System.out.println("Please enter a number");
         }
-        menu.Options();
     }
 
-    protected void markcomplete(int gameIndex) {//last section to complete than debug and add more features
-        System.out.println("From here you can mark a task complete.\nPlease enter the number of the task you would like to mark complete.");
+
+    protected void markComplete(int gameIndex) {//last section to complete than debug and add more features
+        System.out.println("From here you can mark a task complete.\nPlease enter the name of the task you would like to mark complete.");
         int index = 1;
         for (Tasks tasks : incomplete) {
             System.out.println(index++ + ". " + tasks.getTaskName());
-            System.out.println("Please enter the tasks number to complete");
+            System.out.println("Please enter the tasks name to be completed");
+        }
+        String next = scanner.nextLine();
+
+        for (int i = 0; i < incomplete.size(); i++) {
+            completed.add(next);
+
+
         }
 
-        gameIndex--;
-        int qwerty = scanner.nextInt();
-        incomplete.remove(qwerty);
-        completed.add(incomplete.get(qwerty));
 
         menu.Options();
     }
 }
+
+

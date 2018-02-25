@@ -41,7 +41,7 @@ public class Menu {
                     break;
 
                 case 4:
-                    library.markcomplete(0);
+                    library.markComplete(0);
                     break;
 
                 case 5:
