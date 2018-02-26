@@ -35,22 +35,22 @@ public class Library {
     protected void addTask() {//method that adds a task to the incomplete and tasks arrays
 
         try {
-                System.out.println("Enter name of the task");
-                Scanner addName = new Scanner (System.in);
-                String name=(addName.nextLine());
+            System.out.println("Enter name of the task");
+            Scanner addName = new Scanner(System.in);
+            String name = (addName.nextLine());
 
-                System.out.println("Enter the details of the task");
-                Scanner addPrice = new Scanner (System.in);
-                String price=(addPrice.nextLine());
-
-
-                System.out.println("Enter the due date of the task");
-                Scanner addDue = new Scanner (System.in);
-                int due=(addDue.nextInt());
+            System.out.println("Enter the details of the task");
+            Scanner addPrice = new Scanner(System.in);
+            String price = (addPrice.nextLine());
 
 
-                incomplete.add(new Tasks(name, price , due));
-                tasks1.add(new Tasks(name, price, due));
+            System.out.println("Enter the due date of the task");
+            Scanner addDue = new Scanner(System.in);
+            int due = (addDue.nextInt());
+
+
+            incomplete.add(new Tasks(name, price, due));
+            tasks1.add(new Tasks(name, price, due));
 
 
             Calendar calendar = Calendar.getInstance();
@@ -82,7 +82,7 @@ public class Library {
 
             }
 
-        }catch (InputMismatchException ime ) {
+        } catch (InputMismatchException ime) {
             System.out.println("Please choose a number!");
         }
 
@@ -209,7 +209,26 @@ public class Library {
             System.out.println(index++ + ". " + completed.get(0));
         }
 
+        System.out.println("Would you like to clear all the completed tasks?\n1.) Yes\n2.) Go back to home");
+
+        try {
+            switch (scanner.nextInt()) {
+                case 1:
+                    completed.clear();
+                    System.out.println("Tasks cleared!");
+                    break;
+                case 2:
+                    menu.Options();
+                    break;
+                default:
+                    System.out.println("Please enter a number");
+                    break;
+            }
+        } catch (InputMismatchException ime) {
+            System.out.println("Please enter a number");
+        }
         menu.Options();
+
     }
 
     private void time() {
@@ -231,9 +250,10 @@ public class Library {
 
         int index = 1;
         for (Tasks tasks : incomplete) {
-            System.out.println(index++ + ". " + tasks.getTaskName());
-            System.out.println("These are your uncompleted tasks \nWhat would you like to do now?\n1.) Go back to menu\n2.) Mark a task as complete");
+            System.out.println(index++ + ". " + tasks.getTaskName() +"  " + tasks.getDuedate());
         }
+
+        System.out.println("Select 1 to go back to the main menu or 2 to mark a task as completed.");
 
 
         try {
