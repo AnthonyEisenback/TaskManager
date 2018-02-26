@@ -35,18 +35,23 @@ public class Library {
     protected void addTask() {//method that adds a task to the incomplete and tasks arrays
 
         try {
-            System.out.println("Please enter the name of the task to be completed.");
-            name = scanner.nextLine();
+                System.out.println("Enter name of the task");
+                Scanner addName = new Scanner (System.in);
+                String name=(addName.nextLine());
 
-            System.out.println("Please enter the details of this task, ");
-            purpose = scanner.nextLine();
+                System.out.println("Enter the details of the task");
+                Scanner addPrice = new Scanner (System.in);
+                String price=(addPrice.nextLine());
 
-            System.out.println("Please enter the goal of completion of this task, ");
-            completedBy = scanner.nextInt();
 
-            Tasks tasks = new Tasks(name, purpose, completedBy);
-            incomplete.add(tasks);
-            tasks1.add(tasks);
+                System.out.println("Enter the due date of the task");
+                Scanner addDue = new Scanner (System.in);
+                int due=(addDue.nextInt());
+
+
+                incomplete.add(new Tasks(name, price , due));
+                tasks1.add(new Tasks(name, price, due));
+
 
             Calendar calendar = Calendar.getInstance();
 
