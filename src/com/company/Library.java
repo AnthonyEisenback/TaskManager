@@ -231,13 +231,6 @@ public class Library {
 
     }
 
-    private void time() {
-        Calendar calendar = Calendar.getInstance();
-        System.out.println("You created your Task on " +
-                dateFormat.format(calendar.getTime()));
-
-
-    }
 
     protected void incomplete() {//shows just your uncompleted tasks
 
@@ -282,6 +275,7 @@ public class Library {
         for (Tasks tasks : incomplete) {
             System.out.println(index++ + ". " + tasks.getTaskName());
         }
+
 
 
     }

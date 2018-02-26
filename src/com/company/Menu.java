@@ -1,14 +1,26 @@
 package com.company;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
     private Scanner scanner = new Scanner(System.in);
     public Library library = new Library(this);
+    public SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss : MM/dd/yyyy");
+
 
 
     protected void Options() {//this is the main menu that shows you all the first choices you have when the program is launched
+
+        
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss  MM/dd/yyyy");
+        //get current date time with Date()
+        Date date = new Date();
+        System.out.println(dateFormat.format(date));
 
         System.out.println("What would you like to do today?\n1.) Add a task \n" +
                 "2.) Remove a task\n" +
