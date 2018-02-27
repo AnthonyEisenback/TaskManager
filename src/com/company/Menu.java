@@ -10,13 +10,11 @@ import java.util.Scanner;
 public class Menu {
     private Scanner scanner = new Scanner(System.in);
     public Library library = new Library(this);
-    public SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss : MM/dd/yyyy");
-
-
+    public SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a : MM/dd/yyyy");
 
     protected void Options() {//this is the main menu that shows you all the first choices you have when the program is launched
 
-        
+
         DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss  MM/dd/yyyy");
         //get current date time with Date()
         Date date = new Date();

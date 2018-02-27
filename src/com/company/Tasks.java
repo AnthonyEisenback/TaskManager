@@ -8,12 +8,14 @@ public class Tasks {
   String taskName;
   String tastDetails;
   String dateStarted;
+  boolean completed;
 
-    public Tasks(String taskName, String tastDetails, int duedate) {
+    public Tasks(String taskName, String tastDetails, int duedate, boolean completed) {
         this.duedate = duedate;
         this.taskName = taskName;
         this.tastDetails = tastDetails;
         this.dateStarted = dateStarted;
+        this.completed = completed;
     }
 
     public int getDuedate() {
@@ -40,11 +42,11 @@ public class Tasks {
         this.tastDetails = tastDetails;
     }
 
-    public String getDateStarted() {
-        return dateStarted;
+    public boolean isCompleted() {
+        return completed;
     }
 
-    public void setDateStarted(String dateStarted) {
-        this.dateStarted = dateStarted;
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }

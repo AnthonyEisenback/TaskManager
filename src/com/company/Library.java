@@ -4,17 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Library {
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss : MM/dd/yyyy");
-    //    private Tasks tasks = new Tasks("", "", 0);
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a : MM/dd/yyyy");
     private ArrayList<Tasks> tasks1 = new ArrayList<>();
     public final Menu menu;
     private Scanner scanner = new Scanner(System.in);
     private String name;
     private int completedBy;
     private String purpose;
-    private List<String> completed = new ArrayList<>();
+    private ArrayList<Tasks> completed = new ArrayList<>();
     private ArrayList<Tasks> incomplete = new ArrayList<>();
-
 
     public Library(Menu menu) {
         this.menu = menu;
@@ -49,8 +47,8 @@ public class Library {
             int due = (addDue.nextInt());
 
 
-            incomplete.add(new Tasks(name, price, due));
-            tasks1.add(new Tasks(name, price, due));
+            incomplete.add(new Tasks(name, price, due, false));
+            tasks1.add(new Tasks(name, price, due, false));
 
 
             Calendar calendar = Calendar.getInstance();
@@ -85,10 +83,7 @@ public class Library {
         } catch (InputMismatchException ime) {
             System.out.println("Please choose a number!");
         }
-
         menu.Options();
-
-
     }
 
     protected void removeTask(int gameIndex) {//the method used to remove your tasks you choose
@@ -130,7 +125,6 @@ public class Library {
                     "3.) Change a tasks due date\n" +
                     "4.) Go back");
 
-
             switch (scanner.nextInt()) {
 
                 case 1:
@@ -166,7 +160,7 @@ public class Library {
                         System.out.println("please enter the new date of completion...");
                         String names = scanner.nextLine();
                         incomplete.get(qwerty - 1).setDuedate(scanner.nextInt());
-                        System.out.println("Please enter the name again");
+                        System.out.println("Please enter the due date again");
                         tasks1.get(qwerty - 1).setDuedate(scanner.nextInt());
                         System.out.println("Your tasks due date has been changed");
                     } catch (InputMismatchException ime) {
@@ -205,8 +199,8 @@ public class Library {
     protected void completedTasks() {//shows just your completed tasks.
         System.out.println("Here is your completed tasks");
         int index = 1;
-        for (String tasks : completed) {
-            System.out.println(index++ + ". " + completed.get(0));
+        for (Tasks tasks : completed) {
+            System.out.println(index++ + ". " + completed.get(0).getTaskName());
         }
 
         System.out.println("Would you like to clear all the completed tasks?\n1.) Yes\n2.) Go back to home");
@@ -231,6 +225,11 @@ public class Library {
 
     }
 
+    private void time() {
+        Calendar calendar = Calendar.getInstance();
+        System.out.println("You created your Task on " +
+                dateFormat.format(calendar.getTime()));
+    }
 
     protected void incomplete() {//shows just your uncompleted tasks
 
@@ -243,11 +242,10 @@ public class Library {
 
         int index = 1;
         for (Tasks tasks : incomplete) {
-            System.out.println(index++ + ". " + tasks.getTaskName() +"  " + tasks.getDuedate());
+            System.out.println(index++ + ". " + tasks.getTaskName() + " and your goal of completion is... " + tasks.getDuedate());
         }
 
         System.out.println("Select 1 to go back to the main menu or 2 to mark a task as completed.");
-
 
         try {
 
@@ -261,24 +259,28 @@ public class Library {
                 default:
                     System.out.println("Please enter a number");
                     break;
-
             }
         } catch (InputMismatchException ime) {
             System.out.println("Please enter a number");
         }
     }
 
-
     protected void markComplete(int input) {//last section to complete than debug and add more features
-        System.out.println("From here you can mark a task complete.\nPlease enter the name of the task you would like to mark complete.");
+        Calendar calendar = Calendar.getInstance();
+
+        System.out.println("From here you can mark a task complete.");
         int index = 1;
+
         for (Tasks tasks : incomplete) {
             System.out.println(index++ + ". " + tasks.getTaskName());
         }
 
+        System.out.println("What would you like to complete today?");
+        String cal = dateFormat.format(calendar.getTime());
 
+        int pop = scanner.nextInt();
+        completed.add(incomplete.get(pop - 1));
 
+        incomplete.remove(pop - 1);
     }
 }
-
-
