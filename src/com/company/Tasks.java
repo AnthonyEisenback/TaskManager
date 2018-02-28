@@ -4,25 +4,28 @@ import java.util.Scanner;
 
 public class Tasks {
 
-  int duedate;
+  String  duedate;
   String taskName;
   String tastDetails;
   String dateStarted;
   boolean completed;
+  String time;
 
-    public Tasks(String taskName, String tastDetails, int duedate, boolean completed) {
+
+    public Tasks(String taskName, String tastDetails, String duedate, boolean completed) {
         this.duedate = duedate;
         this.taskName = taskName;
         this.tastDetails = tastDetails;
         this.dateStarted = dateStarted;
         this.completed = completed;
+        this.time = time;
     }
 
-    public int getDuedate() {
+    public String getDuedate() {
         return duedate;
     }
 
-    public void setDuedate(int duedate) {
+    public void setDuedate(String duedate) {
         this.duedate = duedate;
     }
 
@@ -49,4 +52,10 @@ public class Tasks {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
+
+    public void setTime (){
+        this.time = time;
+    }
+
+
 }

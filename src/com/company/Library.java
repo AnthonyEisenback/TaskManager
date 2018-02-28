@@ -13,6 +13,8 @@ public class Library {
     private String purpose;
     private ArrayList<Tasks> completed = new ArrayList<>();
     private ArrayList<Tasks> incomplete = new ArrayList<>();
+    private Tasks task = new Tasks("","","",true);
+
 
     public Library(Menu menu) {
         this.menu = menu;
@@ -44,7 +46,7 @@ public class Library {
 
             System.out.println("Enter the due date of the task");
             Scanner addDue = new Scanner(System.in);
-            int due = (addDue.nextInt());
+            String due = (addDue.nextLine());
 
 
             incomplete.add(new Tasks(name, price, due, false));
@@ -159,9 +161,9 @@ public class Library {
                     try {
                         System.out.println("please enter the new date of completion...");
                         String names = scanner.nextLine();
-                        incomplete.get(qwerty - 1).setDuedate(scanner.nextInt());
+                        incomplete.get(qwerty - 1).setDuedate(scanner.nextLine());
                         System.out.println("Please enter the due date again");
-                        tasks1.get(qwerty - 1).setDuedate(scanner.nextInt());
+                        tasks1.get(qwerty - 1).setDuedate(scanner.nextLine());
                         System.out.println("Your tasks due date has been changed");
                     } catch (InputMismatchException ime) {
                         System.out.println("Please enter the date correctly");
@@ -200,7 +202,8 @@ public class Library {
         System.out.println("Here is your completed tasks");
         int index = 1;
         for (Tasks tasks : completed) {
-            System.out.println(index++ + ". " + completed.get(0).getTaskName());
+            System.out.println(index++ + ". " + tasks.getTaskName()+". "+ tasks.duedate);
+
         }
 
         System.out.println("Would you like to clear all the completed tasks?\n1.) Yes\n2.) Go back to home");
@@ -276,11 +279,31 @@ public class Library {
         }
 
         System.out.println("What would you like to complete today?");
-        String cal = dateFormat.format(calendar.getTime());
 
-        int pop = scanner.nextInt();
-        completed.add(incomplete.get(pop - 1));
+        try {
+            int pop = scanner.nextInt();
 
-        incomplete.remove(pop - 1);
+//        task = completed.get(index - 1);
+            Calendar calendar1 = Calendar.getInstance();
+            String time =  dateFormat.format(calendar1.getTime());
+
+            String name = task.getTaskName();
+            String done = name + "   " + time;
+
+            System.out.println(" and your task was completed on... ");
+            task.setDuedate(time);
+            task.setTaskName(name);
+
+
+            completed.add(task);
+
+            incomplete.remove(pop - 1);
+        }catch (IndexOutOfBoundsException ioobe){
+            System.out.println("Please input a valid number");
+        }
+
+
+
+
     }
 }
