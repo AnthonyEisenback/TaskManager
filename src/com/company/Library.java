@@ -198,35 +198,6 @@ public class Library {
 
     }
 
-    protected void completedTasks() {//shows just your completed tasks.
-        System.out.println("Here is your completed tasks");
-        int index = 1;
-        for (Tasks tasks : completed) {
-            System.out.println(index++ + ". " + tasks.getTaskName()+". "+ tasks.duedate);
-
-        }
-
-        System.out.println("Would you like to clear all the completed tasks?\n1.) Yes\n2.) Go back to home");
-
-        try {
-            switch (scanner.nextInt()) {
-                case 1:
-                    completed.clear();
-                    System.out.println("Tasks cleared!");
-                    break;
-                case 2:
-                    menu.Options();
-                    break;
-                default:
-                    System.out.println("Please enter a number");
-                    break;
-            }
-        } catch (InputMismatchException ime) {
-            System.out.println("Please enter a number");
-        }
-        menu.Options();
-
-    }
 
     private void time() {
         Calendar calendar = Calendar.getInstance();
@@ -245,7 +216,7 @@ public class Library {
 
         int index = 1;
         for (Tasks tasks : incomplete) {
-            System.out.println(index++ + ". " + tasks.getTaskName() + " and your goal of completion is... " + tasks.getDuedate());
+            System.out.println(index++  + ". " + tasks.getTaskName() + " and your goal of completion is... " + tasks.getDuedate());
         }
 
         System.out.println("Select 1 to go back to the main menu or 2 to mark a task as completed.");
@@ -281,23 +252,28 @@ public class Library {
         System.out.println("What would you like to complete today?");
 
         try {
-            int pop = scanner.nextInt();
+            int index2 = 1;
 
-//        task = completed.get(index - 1);
+            int qwerty = scanner.nextInt();
+            tasks1.remove(qwerty - 1);
+            incomplete.remove(qwerty - 1);
             Calendar calendar1 = Calendar.getInstance();
             String time =  dateFormat.format(calendar1.getTime());
 
-            String name = task.getTaskName();
-            String done = name + "   " + time;
+//            String name = incomplete.get(index-1).getTaskName();
 
             System.out.println(" and your task was completed on... ");
             task.setDuedate(time);
             task.setTaskName(name);
 
-
             completed.add(task);
+            System.out.println("Your task has been deleted !");
+            menu.Options();
 
-            incomplete.remove(pop - 1);
+
+//        task = completed.get(index - 1);
+
+
         }catch (IndexOutOfBoundsException ioobe){
             System.out.println("Please input a valid number");
         }
@@ -305,5 +281,35 @@ public class Library {
 
 
 
+
+
+    }protected void completedTasks() {//shows just your completed tasks.
+        System.out.println("Here is your completed tasks");
+        int index = 1;
+        for (Tasks tasks : completed) {
+            System.out.println(index++ + tasks.taskName+" and has been completed on... " + tasks.duedate);
+        }
+
+        System.out.println("Would you like to clear all the completed tasks?\n1.) Yes\n2.) Go back to home");
+
+        try {
+            switch (scanner.nextInt()) {
+                case 1:
+                    completed.clear();
+                    System.out.println("Tasks cleared!");
+                    break;
+                case 2:
+                    menu.Options();
+                    break;
+                default:
+                    System.out.println("Please enter a number");
+                    break;
+            }
+        } catch (InputMismatchException ime) {
+            System.out.println("Please enter a number");
+        }
+        menu.Options();
+
     }
+
 }

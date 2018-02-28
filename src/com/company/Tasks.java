@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.Scanner;
 
+
 public class Tasks {
 
   String  duedate;
