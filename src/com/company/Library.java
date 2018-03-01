@@ -8,24 +8,21 @@ public class Library {
     private ArrayList<Tasks> tasks1 = new ArrayList<>();
     public final Menu menu;
     private Scanner scanner = new Scanner(System.in);
-    private ArrayList<Tasks> incomplete = new ArrayList<>();
-    private Tasks task = new Tasks("", "", "", true);
-    private int seconds;
-    private int minutes;
-    private int hours;
     private String name;
-
+    private Date date = new Date();
+private String clock;
 
     public Library(Menu menu) {
         this.menu = menu;
     }
 
     protected void viewTasks() {//the method to display the tasks all together.
+        scanner.nextLine();
         int index = 1;
-        System.out.println("Here is all your tasks that have not been completed.");
+        System.out.println("Here is all your tasks.");
 
         for (Tasks tasks : tasks1) {
-            System.out.println(index++ + ".  " + tasks.getTaskName() + " \n");
+            System.out.println(index++ + ".  " + tasks.getTaskName());
         }
 
         menu.Options();
@@ -49,7 +46,6 @@ public class Library {
             String due = (addDue.nextLine());
 
 
-            incomplete.add(new Tasks(name, price, due, false));
             tasks1.add(new Tasks(name, price, due, false));
 
 
@@ -92,15 +88,18 @@ public class Library {
         int index = 1;
         System.out.println("Input the number of the task to be removed!");
 
-        for (Tasks tasks : tasks1) {
-            System.out.println(index++ + ". " + tasks.getTaskName());
+        try {
+            for (Tasks tasks : tasks1) {
+                System.out.println(index++ + ". " + tasks.getTaskName());
+            }
+            gameIndex--;
+            int qwerty = scanner.nextInt();
+            tasks1.remove(qwerty - 1);
+            System.out.println("Your task has been deleted !");
+            menu.Options();
+        }catch (IndexOutOfBoundsException IND) {
+            System.out.println("Please enter a valid number!");
         }
-        gameIndex--;
-        int qwerty = scanner.nextInt();
-        tasks1.remove(qwerty - 1);
-        incomplete.remove(qwerty - 1);
-        System.out.println("Your task has been deleted !");
-        menu.Options();
 
     }
 
@@ -132,9 +131,7 @@ public class Library {
                 case 1:
                     try {
                         System.out.println("please enter the new name...");
-                        String names = scanner.nextLine();
-                        incomplete.get(qwerty - 1).setTaskName(scanner.nextLine());
-                        System.out.println("Please enter the name again");
+                        scanner.nextLine();
                         tasks1.get(qwerty - 1).setTaskName(scanner.nextLine());
                         System.out.println("Your tasks name have been changed");
                     } catch (InputMismatchException ime) {
@@ -147,8 +144,6 @@ public class Library {
                     try {
                         System.out.println("please enter the new details...");
                         String names = scanner.nextLine();
-                        incomplete.get(qwerty - 1).setTastDetails(scanner.nextLine());
-                        System.out.println("Please enter the details again...");
                         tasks1.get(qwerty - 1).setTastDetails(scanner.nextLine());
                         System.out.println("Your task's details have been changed");
                     } catch (InputMismatchException ime) {
@@ -161,8 +156,6 @@ public class Library {
                     try {
                         System.out.println("please enter the new date of completion...");
                         String names = scanner.nextLine();
-                        incomplete.get(qwerty - 1).setDuedate(scanner.nextLine());
-                        System.out.println("Please enter the due date again");
                         tasks1.get(qwerty - 1).setDuedate(scanner.nextLine());
                         System.out.println("Your tasks due date has been changed");
                     } catch (InputMismatchException ime) {
@@ -198,15 +191,8 @@ public class Library {
 
     }
 
-
-    private void time() {
-        Calendar calendar = Calendar.getInstance();
-        System.out.println("You created your Task on " +
-                dateFormat.format(calendar.getTime()));
-    }
-
     protected void incomplete() {//shows just your uncompleted tasks
-
+Tasks list = new Tasks("","","" , false);
         Calendar calendar = Calendar.getInstance();
 
         System.out.println("This is your time right now. " + dateFormat.format(calendar.getTime()));
@@ -215,8 +201,18 @@ public class Library {
         System.out.println("Here is your uncompleted tasks!");
 
         int index = 1;
-        for (Tasks tasks : incomplete) {
-            System.out.println(index++ + ". " + tasks.getTaskName() + " and your goal of completion is... " + tasks.getDuedate());
+
+        for (Tasks tasks : tasks1) {
+
+            if (tasks.completed == false) {
+                System.out.println(index++ + ". " + tasks.taskName + " and has been completed on... " + dateFormat.format(date));
+
+            } else if (tasks.completed == true){
+                System.out.println("You have no tasks to complete!");
+
+            }
+
+
         }
 
         System.out.println("Select 1 to go back to the main menu or 2 to mark a task as completed.");
@@ -241,82 +237,71 @@ public class Library {
 
     protected void markComplete(int input) {//last section to complete than debug and add more features
         name = "";
-        boolean a = false;
-
-
-        Calendar calendar = Calendar.getInstance();
 
         System.out.println("From here you can mark a task complete.");
         int index = 1;
 
-        for (Tasks tasks : incomplete) {
-            System.out.println(index++ + ". " + tasks.getTaskName());
+        for (Tasks tasks : tasks1) {
+            if (tasks.completed == false) {
+                System.out.println(index++ + ". " + tasks.getTaskName());
+            } else {
+
+            }
         }
 
         System.out.println("What would you like to complete today?");
 
         try {
-            int index2 = 1;
-
-            int qwerty = scanner.nextInt();
-            Calendar calendar1 = Calendar.getInstance();
-            String time = dateFormat.format(calendar1.getTime());
-
-//            String name = incomplete.get(index-1).getTaskName();
-
             for (Tasks tasks : tasks1) {
-//                System.out.println(index++ + ". " + tasks.completed);
 
                 if (tasks.completed == false) {
-                    System.out.println(tasks.getTaskName());
+                    int qwerty = scanner.nextInt();
 
-                    String names = scanner.nextLine();
-                    incomplete.get(qwerty - 1).setCompleted(true);
+                    String clocks = dateFormat.format(date.getTime());
+                    tasks1.get(qwerty - 1).setDuedate(clocks);
+
                     tasks1.get(qwerty - 1).setCompleted(true);
+
+                } else if (tasks.completed == true){
+                    System.out.println("You have no tasks that can be completed");
+                    menu.Options();
 
                 }
             }
 
-
-            System.out.println(name + " and your task was completed on... ");
-            incomplete.remove(qwerty - 1);
-
-
-
-//        task = completed.get(index - 1);
-
-
         } catch (IndexOutOfBoundsException ioobe) {
             System.out.println("Please input a valid number");
         }
-
-
     }
-
     protected void completedTasks() {//shows just your completed tasks.
         System.out.println("Here is your completed tasks");
-        boolean filter = true;
 
         int index = 1;
+
         for (Tasks tasks : tasks1) {
 
             if (tasks.completed == true) {
-                System.out.println(index++ + ". " + tasks.taskName + " and has been completed on... " + tasks.duedate);
+                System.out.println(index++ + ". " + tasks.taskName + " and has been completed on... " + tasks.getDuedate());
 
             } else if (tasks.completed == false) {
-                System.out.println("");
             }
-
-
         }
 
         System.out.println("Would you like to clear all the completed tasks?\n1.) Yes\n2.) Go back to home");
 
         try {
+            Tasks tasks = new Tasks("","","", false);
             switch (scanner.nextInt()) {
                 case 1:
+                    if (tasks.completed = true) {
+                        tasks1.removeAll(tasks1);
+                    }
+                    else {
+
+                    }
 
                     System.out.println("Tasks cleared!");
+                    menu.Options();
                     break;
                 case 2:
                     menu.Options();
@@ -331,18 +316,4 @@ public class Library {
 
     }
 
-
-    protected void timeTick() {
-
-
-        seconds++;
-        while (seconds >= 60) {
-            minutes++;
-            seconds -= 60;
-        }
-        while (minutes >= 60) {
-            hours++;
-            minutes -= 60;
-        }
-    }
 }
