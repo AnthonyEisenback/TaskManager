@@ -8,12 +8,12 @@ public class Library {
     private ArrayList<Tasks> tasks1 = new ArrayList<>();
     public final Menu menu;
     private Scanner scanner = new Scanner(System.in);
-    private String name;
-    private int completedBy;
-    private String purpose;
-    private ArrayList<Tasks> completed = new ArrayList<>();
     private ArrayList<Tasks> incomplete = new ArrayList<>();
-    private Tasks task = new Tasks("","","",true);
+    private Tasks task = new Tasks("", "", "", true);
+    private int seconds;
+    private int minutes;
+    private int hours;
+    private String name;
 
 
     public Library(Menu menu) {
@@ -216,7 +216,7 @@ public class Library {
 
         int index = 1;
         for (Tasks tasks : incomplete) {
-            System.out.println(index++  + ". " + tasks.getTaskName() + " and your goal of completion is... " + tasks.getDuedate());
+            System.out.println(index++ + ". " + tasks.getTaskName() + " and your goal of completion is... " + tasks.getDuedate());
         }
 
         System.out.println("Select 1 to go back to the main menu or 2 to mark a task as completed.");
@@ -240,6 +240,10 @@ public class Library {
     }
 
     protected void markComplete(int input) {//last section to complete than debug and add more features
+        name = "";
+        boolean a = false;
+
+
         Calendar calendar = Calendar.getInstance();
 
         System.out.println("From here you can mark a task complete.");
@@ -255,39 +259,55 @@ public class Library {
             int index2 = 1;
 
             int qwerty = scanner.nextInt();
-            tasks1.remove(qwerty - 1);
-            incomplete.remove(qwerty - 1);
             Calendar calendar1 = Calendar.getInstance();
-            String time =  dateFormat.format(calendar1.getTime());
+            String time = dateFormat.format(calendar1.getTime());
 
 //            String name = incomplete.get(index-1).getTaskName();
 
-            System.out.println(" and your task was completed on... ");
-            task.setDuedate(time);
-            task.setTaskName(name);
+            for (Tasks tasks : tasks1) {
+//                System.out.println(index++ + ". " + tasks.completed);
 
-            completed.add(task);
-            System.out.println("Your task has been deleted !");
-            menu.Options();
+                if (tasks.completed == false) {
+                    System.out.println(tasks.getTaskName());
+
+                    String names = scanner.nextLine();
+                    incomplete.get(qwerty - 1).setCompleted(true);
+                    tasks1.get(qwerty - 1).setCompleted(true);
+
+                }
+            }
+
+
+            System.out.println(name + " and your task was completed on... ");
+            incomplete.remove(qwerty - 1);
+
 
 
 //        task = completed.get(index - 1);
 
 
-        }catch (IndexOutOfBoundsException ioobe){
+        } catch (IndexOutOfBoundsException ioobe) {
             System.out.println("Please input a valid number");
         }
 
 
+    }
 
-
-
-
-    }protected void completedTasks() {//shows just your completed tasks.
+    protected void completedTasks() {//shows just your completed tasks.
         System.out.println("Here is your completed tasks");
+        boolean filter = true;
+
         int index = 1;
-        for (Tasks tasks : completed) {
-            System.out.println(index++ + tasks.taskName+" and has been completed on... " + tasks.duedate);
+        for (Tasks tasks : tasks1) {
+
+            if (tasks.completed == true) {
+                System.out.println(index++ + ". " + tasks.taskName + " and has been completed on... " + tasks.duedate);
+
+            } else if (tasks.completed == false) {
+                System.out.println("");
+            }
+
+
         }
 
         System.out.println("Would you like to clear all the completed tasks?\n1.) Yes\n2.) Go back to home");
@@ -295,7 +315,7 @@ public class Library {
         try {
             switch (scanner.nextInt()) {
                 case 1:
-                    completed.clear();
+
                     System.out.println("Tasks cleared!");
                     break;
                 case 2:
@@ -308,8 +328,21 @@ public class Library {
         } catch (InputMismatchException ime) {
             System.out.println("Please enter a number");
         }
-        menu.Options();
 
     }
 
+
+    protected void timeTick() {
+
+
+        seconds++;
+        while (seconds >= 60) {
+            minutes++;
+            seconds -= 60;
+        }
+        while (minutes >= 60) {
+            hours++;
+            minutes -= 60;
+        }
+    }
 }
