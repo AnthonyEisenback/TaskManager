@@ -30,6 +30,10 @@ public class Menu {
                 "8.) View details of a task\n" +
                 "9.) Exit Program");
 
+
+        /** This works, but I personally prefer making case-switch menus strings. '1', '2', that way you don't need a try catch,
+         * as a letter or symbol will still be a string and won't throw an exception. so you can just handle any sort of case
+         * where they enter an invalid resposne in the default case and then use recursion to show the menu again.*/
         try {
 
 
