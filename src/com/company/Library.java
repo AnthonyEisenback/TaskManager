@@ -5,11 +5,19 @@ import java.util.*;
 
 public class Library {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a : MM/dd/yyyy");
+
+
+    /** Better naming convention. tasks1 doesn't tell me what this arraylist is. It'd be better to be called taskList. Also,
+     * remember to make it a list first, List taskList = new ArrayList()*/
     private ArrayList<Tasks> tasks1 = new ArrayList<>();
     public final Menu menu;
     private Scanner scanner = new Scanner(System.in);
+
+    /** Unused, remove code not being used. */
     private String name;
     private Date date = new Date();
+
+    /** Unused, remove code not being used. */
     private String clock;
 
     public Library(Menu menu) {
@@ -17,6 +25,8 @@ public class Library {
     }
 
     protected void viewTasks() {//the method to display the tasks all together.
+
+        /** Really good */
         scanner.nextLine();
         int index = 1;
         System.out.println("Here is all your tasks.");
@@ -30,6 +40,7 @@ public class Library {
     }
 
     protected void addTask() {//method that adds a task to the incomplete and tasks arrays
+        /** Don't need to create new scanners, could continue to reuse the same scanner.*/
 
         try {
             System.out.println("Enter name of the task");
@@ -73,6 +84,7 @@ public class Library {
                     break;
                 default:
 
+                    /** Make sure to tell the user why you're sending them back to the menu if they enter an incorrect response */
                     menu.Options();
                     break;
 
@@ -93,6 +105,8 @@ public class Library {
                 System.out.println(index++ + ". " + tasks.getTaskName());
             }
             gameIndex--;
+
+            /**Better naming convention. qwerty doesn't tell me what this int's purpose is.  */
             int qwerty = scanner.nextInt();
             tasks1.remove(qwerty - 1);
             System.out.println("Your task has been deleted !");

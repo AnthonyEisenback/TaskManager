@@ -13,6 +13,8 @@ public class Tasks {
   String time;
 
 
+  /** Nice job with your model */
+
     public Tasks(String taskName, String tastDetails, String duedate, boolean completed) {
         this.duedate = duedate;
         this.taskName = taskName;
