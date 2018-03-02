@@ -209,29 +209,7 @@ public class Library {
 
             } else if (tasks.completed == true) {
                 System.out.println("You have no tasks to complete!");
-
             }
-
-
-        }
-
-        System.out.println("Select 1 to go back to the main menu or 2 to mark a task as completed.");
-
-        try {
-
-            switch (scanner.nextInt()) {
-                case 1:
-                    menu.Options();
-                    break;
-                case 2:
-                    markComplete(0);
-                    break;
-                default:
-                    System.out.println("Please enter a number");
-                    break;
-            }
-        } catch (InputMismatchException ime) {
-            System.out.println("Please enter a number");
         }
     }
 
@@ -249,17 +227,26 @@ public class Library {
             }
 
         }
-try{
-    System.out.println("What would you like to complete today?");
+        try {
+            System.out.println("What would you like to complete today?");
+            int i = scanner.nextInt() - 1;
+            tasks1.get(i).setCompleted(true);
 
-    tasks1.get(scanner.nextInt() - 1).setCompleted(true);
+            Calendar calendar = Calendar.getInstance();
 
-}catch (InputMismatchException ime){
+            String cal = dateFormat.format(calendar.getTime());
+
+            tasks1.get(i).setDuedate(cal);
+
+
+        } catch (InputMismatchException ime) {
             System.out.println("Please enter a number!");
-}catch (IndexOutOfBoundsException iob) {
-            System.out.println("Please enter a number within the range!");
-}
 
+
+        } catch (IndexOutOfBoundsException iob) {
+            System.out.println("Please enter a number within the range!");
+            menu.Options();
+        }
 
 
     }
@@ -302,6 +289,9 @@ try{
             }
         } catch (InputMismatchException ime) {
             System.out.println("Please enter a number");
+        } catch (IndexOutOfBoundsException iod) {
+            System.out.println("Please select a number within the range!");
+            menu.Options();
         }
 
     }
