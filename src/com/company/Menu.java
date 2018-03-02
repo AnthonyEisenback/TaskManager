@@ -80,18 +80,22 @@ public class Menu {
                     library.exit();
 
                 default:
-                    System.out.println("Please enter a number");
+                    System.out.println("Please enter a number from 1-9");
+                    Options();
                     break;
 
             }
 
-        } catch (InputMismatchException ime) {
+        } catch (IndexOutOfBoundsException ime) {
             scanner.nextLine();
             Options();
-            System.out.println("Please input a number");
+            System.out.println("Please input a valid number");
+        } catch (InputMismatchException ime) {
+            System.out.println("Please enter a valid number");
+            scanner.nextLine();
+            Options();
+
         }
-
-
     }
 }
 
