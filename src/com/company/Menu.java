@@ -1,102 +1,122 @@
 package com.company;
-
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 public class Menu {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
     private Scanner scanner = new Scanner(System.in);
     public Library library = new Library(this);
 
     public SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
 
     protected void Options() {//this is the main menu that shows you all the first choices you have when the program is launched
+//        JFrame frame = new JFrame( "Task Manager");
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setBounds(50, 50, 200, 200);
+//        frame.setVisible(true);
 
         DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a  MM/dd/yyyy");
-        //get current date time with Date()
-        Date date = new Date();
+    //get current date time with Date()
+    Date date = new Date();
 
-        System.out.println("The time is " + dateFormat.format(date));
+        System.out.println(ANSI_RED+"The time is "+dateFormat.format(date)+ANSI_RESET);
 
-        System.out.println("What would you like to do today?\n1.) Add a task \n" +
-                "2.) Remove a task\n" +
-                "3.) View Your tasks\n" +
-                "4.) Mark a task as Complete\n" +
-                "5.) Completed Tasks\n" +
-                "6.) View Uncompleted tasks\n" +
-                "7.) Edit a task \n" +
-                "8.) View details of a task\n" +
-                "9.) Exit Program");
+                System.out.println(ANSI_GREEN+"would you like to do today?\n1.) Add a task \n"+
+                "2.) Remove a task\n"+
+                "3.) View Your tasks\n"+
+                "4.) Mark a task as Complete\n"+
+                "5.) Completed Tasks\n"+
+                "6.) View Uncompleted tasks\n"+
+                "7.) Edit a task \n"+
+                "8.) View details of a task\n"+
+                "9.) Exit Program"+ANSI_RESET);
 
-        try {
+                try{
 
 
-            switch (scanner.nextInt()) {
+                switch(scanner.nextInt()){
 
                 case 1:
-                    library.addTask();
+                library.addTask();
 
-                    break;
+                break;
 
                 case 2:
-                    library.removeTask(0);
+                library.removeTask(0);
 
-                    break;
+                break;
 
                 case 3:
-                    library.viewTasks();
+                library.viewTasks();
 
-                    break;
+                break;
 
                 case 4:
-                    library.markComplete(0);
-                    break;
+                library.markComplete(0);
+                break;
 
                 case 5:
-                    library.completedTasks();
+                library.completedTasks();
 
-                    break;
+                break;
 
                 case 6:
-                    library.incomplete();
+                library.incomplete();
 
-                    break;
+                break;
 
                 case 7:
-                    library.editTask(0);
+                library.editTask(0);
 
 
-                    break;
+                break;
 
                 case 8:
-                    library.selectAndViewDetail(0);
+                library.selectAndViewDetail(0);
 
 
-                    break;
+                break;
 
                 case 9:
-                    library.exit();
+                library.exit();
 
-                default:
-                    System.out.println("Please enter a number from 1-9");
-                    Options();
-                    break;
+                case 10:
 
-            }
-
-        } catch (IndexOutOfBoundsException ime) {
-            scanner.nextLine();
-            Options();
-            System.out.println("Please input a valid number");
-        } catch (InputMismatchException ime) {
-            System.out.println("Please enter a valid number");
-            scanner.nextLine();
-            Options();
+default:
+        System.out.println("Please enter a number from 1-9");
+        Options();
+        break;
 
         }
+
+        }catch(IndexOutOfBoundsException ime){
+        scanner.nextLine();
+        Options();
+        System.out.println("Please input a valid number");
+        }catch(InputMismatchException ime){
+        System.out.println("Please enter a valid number");
+        scanner.nextLine();
+        Options();
+
+        } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
     }
-}
+        }
 
 

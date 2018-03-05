@@ -1,7 +1,9 @@
 package com.company;
-
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 
 public class Library {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a : MM/dd/yyyy");
@@ -10,7 +12,7 @@ public class Library {
     private Scanner scanner = new Scanner(System.in);
     private String name;
     private Date date = new Date();
-    private String clock;
+
 
     public Library(Menu menu) {
         this.menu = menu;
@@ -26,7 +28,6 @@ public class Library {
         }
 
         menu.Options();
-
     }
 
     protected void addTask() {//method that adds a task to the incomplete and tasks arrays
@@ -53,9 +54,11 @@ public class Library {
 
             System.out.println("You added your task on, " + dateFormat.format(calendar.getTime()));
 
+
         } catch (InputMismatchException ime) {
             System.out.println("Please enter the Tasks Title");
             menu.Options();
+
         }
 
         System.out.println("Would you like to add another task?\n1.) Yes\n2.) No");
@@ -68,12 +71,12 @@ public class Library {
                     addTask();
                     break;
                 case 2:
-
                     menu.Options();
+
                     break;
                 default:
-
                     menu.Options();
+
                     break;
 
             }
@@ -82,11 +85,12 @@ public class Library {
             System.out.println("Please choose a number!");
         }
         menu.Options();
+
     }
 
     protected void removeTask(int gameIndex) {//the method used to remove your tasks you choose
         int index = 1;
-        System.out.println("Input the number of the task to be removed!");
+        System.out.println(menu.ANSI_YELLOW + "Input the number of the task to be removed!" + menu.ANSI_RESET);
 
         try {
             for (Tasks tasks : tasks1) {
@@ -97,13 +101,14 @@ public class Library {
             tasks1.remove(qwerty - 1);
             System.out.println("Your task has been deleted !");
             menu.Options();
+
         } catch (IndexOutOfBoundsException IND) {
             System.out.println("Please enter a valid number!");
         }
 
     }
 
-    protected void exit() {//method to terminate the program
+    protected void exit() throws IOException {//method to terminate the program
         System.out.println("Goodbye");
         System.exit(0);
     }
@@ -166,6 +171,7 @@ public class Library {
                     break;
                 case 4://recalls the options method to go back to the main menu.
                     menu.Options();
+
                     break;
                 default:
                     System.out.println("Please enter a number");
@@ -177,6 +183,7 @@ public class Library {
             System.out.println("Please input a number");
         }
         menu.Options();
+
     }
 
     protected void selectAndViewDetail(int gameIndex) {//shows you the tasks you have made and allows you to see the full detail on the tasks
@@ -210,6 +217,7 @@ public class Library {
             } else if (tasks.completed == true) {
                 System.out.println("You have no tasks to complete!");
             }
+            menu.Options();
         }
     }
 
@@ -231,7 +239,6 @@ public class Library {
             System.out.println("What would you like to complete today?");
             int i = scanner.nextInt() - 1;
             tasks1.get(i).setCompleted(true);
-
             Calendar calendar = Calendar.getInstance();
 
             String cal = dateFormat.format(calendar.getTime());
@@ -246,6 +253,7 @@ public class Library {
         } catch (IndexOutOfBoundsException iob) {
             System.out.println("Please enter a number within the range!");
             menu.Options();
+
         }
 
 
@@ -279,9 +287,11 @@ public class Library {
 
                     System.out.println("Tasks cleared!");
                     menu.Options();
+
                     break;
                 case 2:
                     menu.Options();
+
                     break;
                 default:
                     System.out.println("Please enter a number");
@@ -292,8 +302,7 @@ public class Library {
         } catch (IndexOutOfBoundsException iod) {
             System.out.println("Please select a number within the range!");
             menu.Options();
+
         }
-
     }
-
 }
