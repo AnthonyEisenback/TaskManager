@@ -1,5 +1,6 @@
 package com.company;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -109,6 +110,16 @@ public class Library {
     }
 
     protected void exit() throws IOException {//method to terminate the program
+        try {
+            File file = new File("logs.txt");
+            file.setWritable(true);
+            file.setReadable(true);
+            FileWriter fw = new FileWriter(file);
+            file.getAbsolutePath();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("Goodbye");
         System.exit(0);
     }
