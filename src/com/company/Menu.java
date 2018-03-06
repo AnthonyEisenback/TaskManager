@@ -1,4 +1,5 @@
 package com.company;
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -9,25 +10,18 @@ import java.util.Scanner;
 
 public class Menu {
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_WHITE = "\u001B[37m";
     private Scanner scanner = new Scanner(System.in);
     public Library library = new Library(this);
 
-    public SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-
-    protected void Options() {//this is the main menu that shows you all the first choices you have when the program is launched
+    protected void Options() throws IOException {//this is the main menu that shows you all the first choices you have when the program is launched
 
         DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a  MM/dd/yyyy");
         Date date = new Date();
 
-        System.out.println(ANSI_RED + "The time is " + dateFormat.format(date) + ANSI_RESET);
+        System.out.println(ANSI_YELLOW + "The time is " + dateFormat.format(date.getTime()) + ANSI_RESET);
 
         System.out.println(ANSI_GREEN + "would you like to do today?\n1.) Add a task \n" +
                 "2.) Remove a task\n" +
@@ -100,13 +94,13 @@ public class Menu {
         } catch (IndexOutOfBoundsException ime) {
             scanner.nextLine();
             Options();
-            System.out.println("Please input a valid number");
+            System.out.println(ANSI_RED + "Please input a valid number" + ANSI_RESET);
         } catch (InputMismatchException ime) {
-            System.out.println("Please enter a valid number");
+            System.out.println(ANSI_RED + "Please enter a valid number" + ANSI_RESET);
             scanner.nextLine();
             Options();
 
-        }catch (IOException IO){}
+        }
     }
 }
 

@@ -4,9 +4,13 @@ import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // write your code here
         Menu menu = new Menu();
-        menu.Options();
+        try {
+            menu.Options();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
